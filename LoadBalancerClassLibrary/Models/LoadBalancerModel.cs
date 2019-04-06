@@ -17,7 +17,9 @@ namespace LoadBalancerClassLibrary.Models
     {
         public ObservableCollection<ListBoxItem> Log { get; set; }
         public ObservableCollection<ListBoxItem> ServerList { get; set; }
+        public ObservableCollection<ListBoxItem> MethodItems { get; set; }
         public ListBoxItem SelectedItem { get; set; }
+        public ListBoxItem SelectedMethod { get; set; }
 
         public bool ACTIVE = false;
         public bool STOPPING = false;
@@ -35,7 +37,12 @@ namespace LoadBalancerClassLibrary.Models
         {
             Log = new ObservableCollection<ListBoxItem>();
             ServerList = new ObservableCollection<ListBoxItem>();
+            MethodItems = new ObservableCollection<ListBoxItem>();
             SelectedItem = new ListBoxItem();
+            SelectedMethod = new ListBoxItem();
+
+            AddToMethods("Method #1");
+
             InitServers();
             //DoHealthCheck();
         }
@@ -175,7 +182,7 @@ namespace LoadBalancerClassLibrary.Models
 
             while (s == null)
             {
-                string rnd = random.Next(1, servers.Count).ToString();
+                string rnd = random.Next(1, servers.Count + 1).ToString();
                 s = servers.Where((server) => (server.ID == rnd) && server.ALIVE == true).First();
             }
 
@@ -243,6 +250,11 @@ namespace LoadBalancerClassLibrary.Models
         public void AddToLog(string message)
         {
             dispatcher.Invoke(() => Log.Add(new ListBoxItem { Content = message }));
+        }
+
+        public void AddToMethods(string method)
+        {
+            dispatcher.Invoke(() => MethodItems.Add(new ListBoxItem { Content = method }));
         }
 
         public void AddToServerList(string server, bool alive)

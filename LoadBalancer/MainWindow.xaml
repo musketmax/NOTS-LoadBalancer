@@ -46,7 +46,7 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <Button x:Name="btnStart" Grid.ColumnSpan="2" Content="Start/Stop LB" Height="48" Margin="10, 0, 10, 10" Cursor="Hand" Click="BtnStart_Click" Background="#FFAFD2F0">
+                <Button x:Name="btnStart" Command="{Binding Path=StartStopCommand, Mode=OneWay}" Grid.ColumnSpan="2" Content="Start/Stop LB" Height="48" Margin="10, 0, 10, 10" Cursor="Hand">
                     <Button.Effect>
                         <DropShadowEffect Color="#FFD4D4D4"/>
                     </Button.Effect>
@@ -67,17 +67,14 @@
                 <Label Content="IP Address" Width="Auto" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" />
 
                 <Label Content="Method" Width="Auto" HorizontalAlignment="Left" Margin="10" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" />
-                <ComboBox Grid.Row="3" Grid.Column="1" Margin="10" Width="180" SelectedIndex="0" Cursor="Hand">
+                <ComboBox Grid.Row="3" Grid.Column="1" Margin="10" Width="180" SelectedIndex="0" Cursor="Hand" ItemsSource="{Binding MethodItems}" SelectedItem="{Binding SelectedMethod, Mode=OneWay}">
                     <ComboBox.Effect>
                         <DropShadowEffect Color="#FFD4D4D4"/>
                     </ComboBox.Effect>
-                    <ListBoxItem Content="Method #1"/>
-                    <ListBoxItem Content="Method #2"/>
-                    <ListBoxItem Content="Method #3"/>
                 </ComboBox>
             </Grid>
         </StackPanel>
-        <Button x:Name="btnClearLog" Content="Clear Log" HorizontalAlignment="Left" Margin="10,525,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="525" Height="37" Click="BtnClearLog_Click" Cursor="Hand" Background="#FFAFD2F0">
+        <Button x:Name="btnClearLog" Command="{Binding Path=ClearLogCommand, Mode=OneWay}"  Content="Clear Log" HorizontalAlignment="Left" Margin="10,525,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="525" Height="37" Cursor="Hand" Background="#FFAFD2F0">
             <Button.Effect>
                 <DropShadowEffect Color="#FFD4D4D4"/>
             </Button.Effect>

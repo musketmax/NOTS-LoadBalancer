@@ -17,15 +17,5 @@ namespace LoadBalancer
             VM = new LoadBalancerView();
             DataContext = VM;
         }
-
-        private void BtnStart_Click(object sender, RoutedEventArgs e)
-        {
-            VM.StartStop();
-        }
-
-        private void BtnClearLog_Click(object sender, RoutedEventArgs e)
-        {
-            VM.ClearLog();
-        }
     }
 }

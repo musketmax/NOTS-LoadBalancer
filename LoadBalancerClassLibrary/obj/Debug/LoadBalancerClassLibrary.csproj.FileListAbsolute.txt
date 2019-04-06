@@ -1,0 +1,6 @@
+C:\Users\thomas\source\repos\LoadBalancer\LoadBalancerClassLibrary\bin\Debug\LoadBalancerClassLibrary.dll
+C:\Users\thomas\source\repos\LoadBalancer\LoadBalancerClassLibrary\bin\Debug\LoadBalancerClassLibrary.pdb
+C:\Users\thomas\source\repos\LoadBalancer\LoadBalancerClassLibrary\obj\Debug\LoadBalancerClassLibrary.csproj.CoreCompileInputs.cache
+C:\Users\thomas\source\repos\LoadBalancer\LoadBalancerClassLibrary\obj\Debug\LoadBalancerClassLibrary.dll
+C:\Users\thomas\source\repos\LoadBalancer\LoadBalancerClassLibrary\obj\Debug\LoadBalancerClassLibrary.pdb
+C:\Users\thomas\source\repos\LoadBalancer\LoadBalancerClassLibrary\obj\Debug\LoadBalancerClassLibrary.csprojAssemblyReference.cache

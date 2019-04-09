@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:LoadBalancer"
         xmlns:ViewModels="clr-namespace:LoadBalancerClassLibrary.ViewModels;assembly=LoadBalancerClassLibrary" x:Class="LoadBalancer.MainWindow"
         mc:Ignorable="d"
-        Title="LoadBalancer" Height="750" Width="875" MinHeight="750" MinWidth="875">
+        Title="LoadBalancer" Height="750" Width="950" MinHeight="750" MinWidth="950">
     <Grid RenderTransformOrigin="0.497,0.557">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -78,24 +78,24 @@
                 </TextBox>
                 <Label Content="Buffer Size" Width="Auto" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="3" Grid.Column="0" VerticalAlignment="Top" />
 
-                <Label Content="Algo" Width="Auto" HorizontalAlignment="Left" Margin="10" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" />
+                <Label Content="Algorithm" Width="Auto" HorizontalAlignment="Left" Margin="10" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" />
                 <ComboBox Grid.Row="4" Grid.Column="1" Margin="10" Width="180" SelectedIndex="0" Cursor="Hand" ItemsSource="{Binding MethodItems}" SelectedValue="{Binding SelectedMethodString}" SelectedValuePath="Content">
                     <ComboBox.Effect>
                         <DropShadowEffect Color="#FFD4D4D4"/>
                     </ComboBox.Effect>
                 </ComboBox>
 
-                <Label Content="Health" Width="Auto" HorizontalAlignment="Left" Margin="10" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" />
+                <Label Content="Health Checking" Width="Auto" HorizontalAlignment="Left" Margin="10" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" />
                 <ComboBox Grid.Row="5" Grid.Column="1" Margin="10" Width="180" SelectedIndex="0" Cursor="Hand" ItemsSource="{Binding HealthItems}" SelectedItem="{Binding SelectedMethod, Mode=OneWay}" SelectedValue="{Binding SelectedHealthString}" SelectedValuePath="Content">
                     <ComboBox.Effect>
                         <DropShadowEffect Color="#FFD4D4D4"/>
                     </ComboBox.Effect>
                 </ComboBox>
 
-                <Label Content="Persist" Width="Auto" HorizontalAlignment="Left" Margin="10, 5, 5, 10" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" />
+                <Label Content="Persistence" Width="Auto" HorizontalAlignment="Left" Margin="10, 5, 5, 10" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" />
                 <CheckBox x:Name="PersistCheckBox" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Right" Content="On/Off" Margin="10" VerticalAlignment="Center" IsChecked="{Binding PERSIST}"/>
 
-                <Label Content="Method" Width="Auto" HorizontalAlignment="Left" Margin="10" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" />
+                <Label Content="Persistence method" Width="Auto" HorizontalAlignment="Left" Margin="10" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" />
                 <ComboBox IsEnabled="{Binding ElementName=PersistCheckBox, Path=IsChecked}" Grid.Row="7" Grid.Column="1" Margin="10" Width="180" SelectedIndex="0" Cursor="Hand" ItemsSource="{Binding PersistItems}" SelectedItem="{Binding SelectedPersist, Mode=OneWay}" SelectedValue="{Binding SelectedPersistString}" SelectedValuePath="Content">
                     <ComboBox.Effect>
                         <DropShadowEffect Color="#FFD4D4D4"/>
@@ -109,7 +109,7 @@
             </Button.Effect>
         </Button>
 
-        <StackPanel Grid.Column="1" HorizontalAlignment="Left" Height="280" Margin="0,0,0,3" Grid.Row="2" Grid.RowSpan="2" VerticalAlignment="Bottom" Width="290">
+        <StackPanel HorizontalAlignment="Left" Height="280" Margin="584,0,0,2.5" Grid.Row="2" Grid.RowSpan="2" VerticalAlignment="Bottom" Width="351" Grid.ColumnSpan="2">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
@@ -123,18 +123,18 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <ListBox x:Name="ServerList" ItemsSource="{Binding ServerList}" SelectedItem="{Binding SelectedItem, Mode=OneWay}" Height="150" Margin="10,0,10,13" Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="2">
+                <ListBox x:Name="ServerList" ItemsSource="{Binding ServerList}" SelectedItem="{Binding SelectedItem, Mode=OneWay}" Height="150" Margin="0,0,10,13" Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="2">
                     <ListBox.Effect>
                         <DropShadowEffect Color="#FFD4D4D4"/>
                     </ListBox.Effect>
                 </ListBox>
 
-                <TextBox Height="22" TextWrapping="Wrap" Text="{Binding IP_ADD}" Grid.Row="2" Grid.Column="0" Margin="10, 0">
+                <TextBox Height="22" TextWrapping="Wrap" Text="{Binding IP_ADD}" Grid.Row="2" Grid.Column="0" Margin="0,0,9.5,0">
                     <TextBox.Effect>
                         <DropShadowEffect Color="#FFD4D4D4"/>
                     </TextBox.Effect>
                 </TextBox>
-                <Label Content="IP Address" Grid.Column="0" HorizontalAlignment="Left" Margin="10, 5" Grid.Row="1" VerticalAlignment="Top"/>
+                <Label Content="IP Address" Grid.Column="0" HorizontalAlignment="Left" Margin="0,5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="76"/>
 
                 <TextBox Height="22" TextWrapping="Wrap" Text="{Binding PORT_ADD}" Grid.Row="2" Grid.Column="1" Margin="10, 0">
                     <TextBox.Effect>
@@ -143,7 +143,7 @@
                 </TextBox>
                 <Label Content="Port" Grid.Column="1" HorizontalAlignment="Left" Margin="10, 5" Grid.Row="1" VerticalAlignment="Top"/>
 
-                <Button x:Name="btnAdd"  Command="{Binding Path=AddServerCommand, Mode=OneWay}" Content="Add" Grid.Row="3" Grid.Column="0" Margin="10" Height="37" Background="#FF89EA84" Cursor="Hand">
+                <Button x:Name="btnAdd"  Command="{Binding Path=AddServerCommand, Mode=OneWay}" Content="Add" Grid.Row="3" Grid.Column="0" Margin="0,10,9.5,10" Height="37" Background="#FF89EA84" Cursor="Hand">
                     <Button.Effect>
                         <DropShadowEffect Color="#FFD4D4D4"/>
                     </Button.Effect>

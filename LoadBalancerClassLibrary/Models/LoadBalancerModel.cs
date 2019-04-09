@@ -20,46 +20,58 @@ namespace LoadBalancerClassLibrary.Models
 {
     public class LoadBalancerModel
     {
+        #region UI-Items
         public ObservableCollection<ListBoxItem> Log { get; set; }
         public ObservableCollection<ListBoxItem> ServerList { get; set; }
         public ObservableCollection<ListBoxItem> MethodItems { get; set; }
         public ObservableCollection<ListBoxItem> HealthItems { get; set; }
         public ObservableCollection<ListBoxItem> PersistItems { get; set; }
-        public ListBoxItem SelectedItem { get; set; }
+        #endregion
 
+        #region Selected-UI-Items
+        public ListBoxItem SelectedItem { get; set; }
         public string SelectedMethodString;
         public string SelectedHealthString;
         public string SelectedPersistString;
+        #endregion
 
+        #region Statuses
         public bool ACTIVE = false;
         public bool STOPPING = false;
         public bool PERSIST = false;
+        #endregion
 
+        #region Configurations
         public int PORT = 8080;
         public string IP = "127.0.0.1";
         public int BUFFER_SIZE = 1024;
-
         public string IP_ADD = "127.0.0.1";
         public int PORT_ADD = 8085;
+        #endregion
 
+        #region IO-models
         private TcpListener _listener;
         private Dispatcher dispatcher = Dispatcher.CurrentDispatcher;
         private List<Server> servers;
+        #endregion
 
+        #region Algorithms
         private ILBAlgorithmFactory algoFactory;
         private ILBAlgorithm currentAlgorithm;
-
-        private List<Session> sessions;
-
         private string PreviousAlgoString;
-        private bool COOKIE_ABSENT;
+        #endregion
 
-        //CONSTANTS
+        #region Stateful
+        private List<Session> sessions;
+        private bool COOKIE_ABSENT;
+        #endregion
+
+        #region CONSTANTS
         private string COOKIE_BASED = "Cookie Based";
         private string SESSION_BASED = "Session Based";
         private string ACTIVE_PERSISTENCE = "Active";
         private string PASSIVE_PERSISTENCE = "Passive";
-
+        #endregion
 
         public LoadBalancerModel()
         {
@@ -338,30 +350,6 @@ namespace LoadBalancerClassLibrary.Models
             return GetAndSetHeaders(buffer, server.ID, COOKIE_BASED);
         }
 
-        private async Task SendGenericErrorCode(TcpClient client)
-        {
-            AddToLog("Sorry, an unexpected error occurred.");
-            byte[] failedBuffer = Encoding.ASCII.GetBytes("Sorry, an unexpected error occurred.");
-            await client.GetStream().WriteAsync(failedBuffer, 0, failedBuffer.Length);
-
-            servers.ForEach((server) =>
-            {
-                dispatcher.Invoke(() => UpdateServerStatus(server));
-            });
-        }
-
-        private async Task DoFailedPersistenceTask(TcpClient client)
-        {
-            AddToLog("ServerID was not found. Returning Error Code.");
-            byte[] failedBuffer = Encoding.ASCII.GetBytes("Sorry, your requested persisted Server is not available.");
-            await client.GetStream().WriteAsync(failedBuffer, 0, failedBuffer.Length);
-
-            servers.ForEach((server) =>
-            {
-                dispatcher.Invoke(() => UpdateServerStatus(server));
-            });
-        }
-
         private Server GetServerForCookie(byte[] request)
         {
             string[] lines = Encoding.ASCII.GetString(request).Split(new[] { Environment.NewLine }, StringSplitOptions.None);
@@ -409,7 +397,31 @@ namespace LoadBalancerClassLibrary.Models
         private async Task DoFailedAlgoTask(TcpClient client)
         {
             AddToLog("Sorry, no servers could be found.");
-            byte[] failedBuffer = Encoding.ASCII.GetBytes("Sorry, no servers could be found");
+            byte[] failedBuffer = Encoding.ASCII.GetBytes("Sorry, no servers could be found.");
+            await client.GetStream().WriteAsync(failedBuffer, 0, failedBuffer.Length);
+
+            servers.ForEach((server) =>
+            {
+                dispatcher.Invoke(() => UpdateServerStatus(server));
+            });
+        }
+
+        private async Task SendGenericErrorCode(TcpClient client)
+        {
+            AddToLog("Sorry, an unexpected error occurred.");
+            byte[] failedBuffer = Encoding.ASCII.GetBytes("Sorry, an unexpected error occurred.");
+            await client.GetStream().WriteAsync(failedBuffer, 0, failedBuffer.Length);
+
+            servers.ForEach((server) =>
+            {
+                dispatcher.Invoke(() => UpdateServerStatus(server));
+            });
+        }
+
+        private async Task DoFailedPersistenceTask(TcpClient client)
+        {
+            AddToLog("ServerID was not found. Returning Error Code.");
+            byte[] failedBuffer = Encoding.ASCII.GetBytes("Sorry, your requested persisted Server is not available.");
             await client.GetStream().WriteAsync(failedBuffer, 0, failedBuffer.Length);
 
             servers.ForEach((server) =>
@@ -464,7 +476,7 @@ namespace LoadBalancerClassLibrary.Models
                 servers.Add(new Server() { ID = guid, NAME = $"{guid}", PORT = 8080 + i, HOST = "127.0.0.1", ALIVE = false, client = new TcpClient() });
             }
 
-            servers.ForEach(async (server) =>
+            servers.AsParallel().AsOrdered().ForAll(async (server) =>
             {
                 try
                 {
@@ -548,8 +560,25 @@ namespace LoadBalancerClassLibrary.Models
 
         public async void AddServer()
         {
+            bool conflict = false;
+
             if (IP_ADD != null || IP_ADD != "" && PORT_ADD != 0)
             {
+                foreach (var server in servers)
+                {
+                    if (server.PORT == PORT_ADD && server.HOST == IP_ADD)
+                    {
+                        conflict = true;
+                        break;
+                    }
+                }
+
+                if (conflict)
+                {
+                    AddToLog("ERROR: A server with this specification already exists.");
+                    return;
+                }
+
                 Guid guid = Guid.NewGuid();
                 Server newServer = new Server() { ID = guid, HOST = IP_ADD, PORT = PORT_ADD, ALIVE = false, client = new TcpClient(), NAME = $"{guid}" };
                 servers.Add(newServer);

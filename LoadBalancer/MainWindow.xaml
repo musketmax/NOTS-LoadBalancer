@@ -6,12 +6,13 @@
         xmlns:local="clr-namespace:LoadBalancer"
         xmlns:ViewModels="clr-namespace:LoadBalancerClassLibrary.ViewModels;assembly=LoadBalancerClassLibrary" x:Class="LoadBalancer.MainWindow"
         mc:Ignorable="d"
-        Title="LoadBalancer" Height="610" Width="875" MinHeight="610" MinWidth="875">
-    <Grid>
+        Title="LoadBalancer" Height="750" Width="875" MinHeight="750" MinWidth="875">
+    <Grid RenderTransformOrigin="0.497,0.557">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -20,12 +21,12 @@
 
 
 
-        <ListBox x:Name="listBox" ItemsSource="{Binding Log}" HorizontalAlignment="Left" Height="500" Margin="10,10,0,0" VerticalAlignment="Top" Width="525" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0">
+        <ListBox x:Name="listBox" ItemsSource="{Binding Log}" HorizontalAlignment="Left" Height="655" Margin="10,10,0,0" VerticalAlignment="Top" Width="525" Grid.Row="0" Grid.RowSpan="4" Grid.Column="0">
             <ListBox.Effect>
                 <DropShadowEffect Color="#FFD4D4D4"/>
             </ListBox.Effect>
         </ListBox>
-        <StackPanel Grid.Row="0" Height="280" Margin="569,10,11,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
+        <StackPanel Grid.Row="0" Grid.RowSpan="3" Height="379" Margin="569,10,11,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
             <StackPanel.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -34,8 +35,10 @@
                     <TranslateTransform X="1.149"/>
                 </TransformGroup>
             </StackPanel.RenderTransform>
-            <Grid Height="304">
+            <Grid Height="385">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -68,31 +71,45 @@
                 </TextBox>
                 <Label Content="IP Address" Width="Auto" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" />
 
-                <Label Content="Method" Width="Auto" HorizontalAlignment="Left" Margin="10" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" />
-                <ComboBox Grid.Row="3" Grid.Column="1" Margin="10" Width="180" SelectedIndex="0" Cursor="Hand" ItemsSource="{Binding MethodItems}" SelectedValue="{Binding SelectedMethodString}" SelectedValuePath="Content">
+                <TextBox x:Name="txtBuffer" Height="23" Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" Margin="10" Text="{Binding BUFFER_SIZE}" >
+                    <TextBox.Effect>
+                        <DropShadowEffect Color="#FFD4D4D4"/>
+                    </TextBox.Effect>
+                </TextBox>
+                <Label Content="Buffer Size" Width="Auto" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="3" Grid.Column="0" VerticalAlignment="Top" />
+
+                <Label Content="Algo" Width="Auto" HorizontalAlignment="Left" Margin="10" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" />
+                <ComboBox Grid.Row="4" Grid.Column="1" Margin="10" Width="180" SelectedIndex="0" Cursor="Hand" ItemsSource="{Binding MethodItems}" SelectedValue="{Binding SelectedMethodString}" SelectedValuePath="Content">
                     <ComboBox.Effect>
                         <DropShadowEffect Color="#FFD4D4D4"/>
                     </ComboBox.Effect>
                 </ComboBox>
 
-                <Label Content="Health" Width="Auto" HorizontalAlignment="Left" Margin="10" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" />
-                <ComboBox Grid.Row="4" Grid.Column="1" Margin="10" Width="180" SelectedIndex="0" Cursor="Hand" ItemsSource="{Binding HealthItems}" SelectedItem="{Binding SelectedMethod, Mode=OneWay}" SelectedValue="{Binding SelectedHealthString}" SelectedValuePath="Content">
+                <Label Content="Health" Width="Auto" HorizontalAlignment="Left" Margin="10" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" />
+                <ComboBox Grid.Row="5" Grid.Column="1" Margin="10" Width="180" SelectedIndex="0" Cursor="Hand" ItemsSource="{Binding HealthItems}" SelectedItem="{Binding SelectedMethod, Mode=OneWay}" SelectedValue="{Binding SelectedHealthString}" SelectedValuePath="Content">
                     <ComboBox.Effect>
                         <DropShadowEffect Color="#FFD4D4D4"/>
                     </ComboBox.Effect>
                 </ComboBox>
 
-                <Label Content="Persist" Width="Auto" HorizontalAlignment="Left" Margin="10, 5, 5, 10" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" />
-                <CheckBox Grid.Column="1" Grid.Row="5" HorizontalAlignment="Right" Content="On/Off" Margin="10" VerticalAlignment="Center"/>
+                <Label Content="Persist" Width="Auto" HorizontalAlignment="Left" Margin="10, 5, 5, 10" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" />
+                <CheckBox x:Name="PersistCheckBox" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Right" Content="On/Off" Margin="10" VerticalAlignment="Center" IsChecked="{Binding PERSIST}"/>
+
+                <Label Content="Method" Width="Auto" HorizontalAlignment="Left" Margin="10" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" />
+                <ComboBox IsEnabled="{Binding ElementName=PersistCheckBox, Path=IsChecked}" Grid.Row="7" Grid.Column="1" Margin="10" Width="180" SelectedIndex="0" Cursor="Hand" ItemsSource="{Binding PersistItems}" SelectedItem="{Binding SelectedPersist, Mode=OneWay}" SelectedValue="{Binding SelectedPersistString}" SelectedValuePath="Content">
+                    <ComboBox.Effect>
+                        <DropShadowEffect Color="#FFD4D4D4"/>
+                    </ComboBox.Effect>
+                </ComboBox>
             </Grid>
         </StackPanel>
-        <Button x:Name="btnClearLog" Command="{Binding Path=ClearLogCommand, Mode=OneWay}"  Content="Clear Log" HorizontalAlignment="Left" Margin="10,525,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="525" Height="37" Cursor="Hand" Background="#FFAFD2F0">
+        <Button x:Name="btnClearLog" Command="{Binding Path=ClearLogCommand, Mode=OneWay}"  Content="Clear Log" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Width="525" Height="36" Cursor="Hand" Background="#FFAFD2F0" Grid.Row="3">
             <Button.Effect>
                 <DropShadowEffect Color="#FFD4D4D4"/>
             </Button.Effect>
         </Button>
 
-        <StackPanel Grid.Column="1" HorizontalAlignment="Left" Height="280" Grid.Row="1" VerticalAlignment="Top" Width="290">
+        <StackPanel Grid.Column="1" HorizontalAlignment="Left" Height="280" Margin="0,0,0,3" Grid.Row="2" Grid.RowSpan="2" VerticalAlignment="Bottom" Width="290">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>

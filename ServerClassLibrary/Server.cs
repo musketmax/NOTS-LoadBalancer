@@ -10,7 +10,7 @@ namespace ServerClassLibrary
         public bool ALIVE { get; set; }
         public int PORT { get; set; }
         public string HOST { get; set; }
-        public string ID { get; set; }
+        public System.Guid ID { get; set; }
 
         public TcpClient client;
         public Server()

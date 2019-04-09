@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AlgorithmClassLibrary.Algorithms.Factory
 {
@@ -30,11 +27,8 @@ namespace AlgorithmClassLibrary.Algorithms.Factory
             {
                 if (tAlgo.IsAssignableFrom(type) && (type != tAlgo))
                 {
-                    Console.WriteLine($"yay! {type.Name}");
                     lstClasses.Add(type.Name);
                 }
-
-                Console.WriteLine($"nay! {type.Name}");
             }
 
             return lstClasses;

@@ -1,6 +1,4 @@
 ﻿using System.Windows;
-using System.Windows.Threading;
-using LoadBalancerClassLibrary.Models;
 using LoadBalancerClassLibrary.ViewModels;
 
 namespace LoadBalancer

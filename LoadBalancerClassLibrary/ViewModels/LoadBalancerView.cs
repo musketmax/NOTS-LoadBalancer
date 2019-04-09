@@ -51,6 +51,12 @@ namespace LoadBalancerClassLibrary.ViewModels
             set { SetProperty(This.IP, value, () => This.IP = value); }
         }
 
+        public int BUFFER_SIZE
+        {
+            get { return This.BUFFER_SIZE; }
+            set { SetProperty(This.BUFFER_SIZE, value, () => This.BUFFER_SIZE = value); }
+        }
+
         public int PORT
         {
             get { return This.PORT; }
@@ -67,6 +73,12 @@ namespace LoadBalancerClassLibrary.ViewModels
         {
             get { return This.PORT_ADD; }
             set { SetProperty(This.PORT_ADD, value, () => This.PORT_ADD = value); }
+        }
+
+        public bool PERSIST
+        {
+            get { return This.PERSIST; }
+            set { SetProperty(This.PERSIST, value, () => This.PERSIST = value); }
         }
 
         public ObservableCollection<ListBoxItem> Log
@@ -89,20 +101,26 @@ namespace LoadBalancerClassLibrary.ViewModels
             get { return This.HealthItems; }
         }
 
+        public ObservableCollection<ListBoxItem> PersistItems
+        {
+            get { return This.PersistItems; }
+        }
+
         public ListBoxItem SelectedItem
         {
             get { return This.SelectedItem; }
-        }
-
-        public ListBoxItem SelectedMethod
-        {
-            get { return This.SelectedMethod; }
         }
 
         public string SelectedMethodString
         {
             get { return This.SelectedMethodString; }
             set { SetProperty(This.SelectedMethodString, value, () => This.SelectedMethodString = value); }
+        }
+
+        public string SelectedPersistString
+        {
+            get { return This.SelectedPersistString; }
+            set { SetProperty(This.SelectedPersistString, value, () => This.SelectedPersistString = value); }
         }
 
         public string SelectedHealthString

@@ -1,9 +1,5 @@
 ﻿using ServerClassLibrary;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AlgorithmClassLibrary.Algorithms
 {
@@ -14,7 +10,6 @@ namespace AlgorithmClassLibrary.Algorithms
         public RoundRobinAlgorithm()
         {
             count = 1;
-            Console.WriteLine("new instance!");
         }
 
         public Server GetServer(List<Server> servers)

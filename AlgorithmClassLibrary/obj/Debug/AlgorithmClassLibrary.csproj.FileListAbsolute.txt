@@ -1,9 +1,9 @@
-C:\Users\thomas\source\repos\LB\AlgorithmClassLibrary\obj\Debug\AlgorithmClassLibrary.csproj.CoreCompileInputs.cache
 C:\Users\thomas\source\repos\LB\AlgorithmClassLibrary\bin\Debug\AlgorithmClassLibrary.dll
 C:\Users\thomas\source\repos\LB\AlgorithmClassLibrary\bin\Debug\AlgorithmClassLibrary.pdb
+C:\Users\thomas\source\repos\LB\AlgorithmClassLibrary\bin\Debug\ServerClassLibrary.dll
+C:\Users\thomas\source\repos\LB\AlgorithmClassLibrary\bin\Debug\ServerClassLibrary.pdb
 C:\Users\thomas\source\repos\LB\AlgorithmClassLibrary\obj\Debug\AlgorithmClassLibrary.csprojAssemblyReference.cache
+C:\Users\thomas\source\repos\LB\AlgorithmClassLibrary\obj\Debug\AlgorithmClassLibrary.csproj.CoreCompileInputs.cache
 C:\Users\thomas\source\repos\LB\AlgorithmClassLibrary\obj\Debug\AlgorithmClassLibrary.csproj.CopyComplete
 C:\Users\thomas\source\repos\LB\AlgorithmClassLibrary\obj\Debug\AlgorithmClassLibrary.dll
 C:\Users\thomas\source\repos\LB\AlgorithmClassLibrary\obj\Debug\AlgorithmClassLibrary.pdb
-C:\Users\thomas\source\repos\LB\AlgorithmClassLibrary\bin\Debug\ServerClassLibrary.dll
-C:\Users\thomas\source\repos\LB\AlgorithmClassLibrary\bin\Debug\ServerClassLibrary.pdb

@@ -3,10 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:LoadBalancer"
-        xmlns:ViewModels="clr-namespace:LoadBalancerClassLibrary.ViewModels;assembly=LoadBalancerClassLibrary" x:Class="LoadBalancer.MainWindow"
-        mc:Ignorable="d"
+    x:Class="LoadBalancer.MainWindow"
+    mc:Ignorable="d"
         Title="LoadBalancer" Height="750" Width="950" MinHeight="750" MinWidth="950">
+
     <Grid RenderTransformOrigin="0.497,0.557">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -18,8 +18,6 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="300"/>
         </Grid.ColumnDefinitions>
-
-
 
         <ListBox x:Name="listBox" ItemsSource="{Binding Log}" HorizontalAlignment="Left" Height="655" Margin="10,10,0,0" VerticalAlignment="Top" Width="525" Grid.Row="0" Grid.RowSpan="4" Grid.Column="0">
             <ListBox.Effect>
@@ -71,7 +69,7 @@
                 </TextBox>
                 <Label Content="IP Address" Width="Auto" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" />
 
-                <TextBox x:Name="txtBuffer" Height="23" Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" Margin="10" Text="{Binding BUFFER_SIZE}" >
+                <TextBox x:Name="txtBuffer" Height="23" Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" Margin="10" Text="{Binding BUFFER_SIZE}">
                     <TextBox.Effect>
                         <DropShadowEffect Color="#FFD4D4D4"/>
                     </TextBox.Effect>

@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Net;
 
 namespace ServerClassLibrary
 {
     public class Session
     {
-        public Guid sessionid { get; set; }
+        public IPAddress IP { get; set; }
         public Guid serverid { get; set; }
 
-        public Session(Guid sessionid, Guid serverid)
+        public Session(IPAddress IP, Guid serverid)
         {
-            this.sessionid = sessionid;
+            this.IP = IP;
             this.serverid = serverid;
         }
     }

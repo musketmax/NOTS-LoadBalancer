@@ -205,9 +205,10 @@ namespace LoadBalancerClassLibrary.Models
                             if (SelectedPersistString == COOKIE_BASED)
                             {
                                 s = GetServerForCookie(stream.GetBuffer());
-                            } else if (SelectedPersistString == SESSION_BASED)
+                            }
+                            else if (SelectedPersistString == SESSION_BASED)
                             {
-                                s = GetServerForSession(stream.GetBuffer());
+                                s = GetServerForSession(client);
                             }
 
                             if (s == null && !COOKIE_ABSENT)
@@ -269,7 +270,7 @@ namespace LoadBalancerClassLibrary.Models
                                     else if (SelectedPersistString == SESSION_BASED)
                                     {
                                         AddToLog("Setting Sessions for persistence..");
-                                        res = SetSession(buffer, serverToSend);
+                                        SetSession(client, serverToSend);
                                     }
                                 }
 
@@ -335,14 +336,18 @@ namespace LoadBalancerClassLibrary.Models
             return Encoding.ASCII.GetBytes(result);
         }
 
-        private byte[] SetSession(byte[] buffer, Server server)
+        private void SetSession(TcpClient client, Server server)
         {
-            var guid = Guid.NewGuid();
-
-            byte[] result = GetAndSetHeaders(buffer, guid, SESSION_BASED);
-            sessions.Add(new Session(guid, server.ID));
-
-            return result;
+            try
+            {
+                IPEndPoint ipep = (IPEndPoint)client.Client.RemoteEndPoint;
+                IPAddress ipa = ipep.Address;
+                sessions.Add(new Session(ipa, server.ID));
+            }
+            catch
+            {
+                AddToLog("Session could not be set.");
+            }
         }
 
         private byte[] SetCookies(byte[] buffer, Server server)
@@ -372,26 +377,39 @@ namespace LoadBalancerClassLibrary.Models
             return guid != null && guid != "" ? servers.Where((x) => x.ALIVE && x.ID == Guid.Parse(guid)).First() : null;
         }
 
-        private Server GetServerForSession(byte[] request)
+        private Server GetServerForSession(TcpClient client)
         {
-            string[] lines = Encoding.ASCII.GetString(request).Split(new[] { Environment.NewLine }, StringSplitOptions.None);
-            string guid = null;
-            bool cookie_found = false;
-
-            foreach (var line in lines)
+            try
             {
-                if (line.Contains("Cookie") && line.Contains("sessionid="))
+                IPEndPoint ipep = (IPEndPoint)client.Client.RemoteEndPoint;
+                IPAddress ipa = ipep.Address;
+
+                Session ses = null;
+                Server s = null;
+
+                if ((ses = sessions.Where((x) => x.IP.ToString() == ipa.ToString()).First()) != null)
                 {
-                    cookie_found = true;
-                    guid = Regex.Match(line, @"sessionid=`(.+)`", RegexOptions.Singleline).Groups[1].Value;
+                    s = servers.Where((x) => x.ID == ses.serverid && x.ALIVE == true).First();
+
+                    if (s != null)
+                    {
+                        return s;
+                    }
+                }
+                else
+                {
+                    COOKIE_ABSENT = true;
+                    return s;
                 }
             }
+            catch (Exception e)
+            {
+                AddToLog(e.Message);
+                COOKIE_ABSENT = true;
+                return null;
+            }
 
-            if (!cookie_found) COOKIE_ABSENT = true;
-
-            Session session = guid != null && guid != "" ? sessions.Where((x) => x.sessionid == Guid.Parse(guid)).First() : null;
-
-            return session != null ? servers.Where((x) => x.ALIVE && x.ID == session.serverid).First() : null;
+            return null;
         }
 
         private async Task DoFailedAlgoTask(TcpClient client)

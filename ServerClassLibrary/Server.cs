@@ -13,9 +13,6 @@ namespace ServerClassLibrary
         public System.Guid ID { get; set; }
 
         public TcpClient client;
-        public Server()
-        {
-        }
 
         public async void AskForHealthActive()
         {

@@ -1,4 +1,8 @@
-﻿namespace LoadBalancerClassLibrary.Base
+﻿using AlgorithmClassLibrary;
+using AlgorithmClassLibrary.Algorithms;
+using AlgorithmClassLibrary.Algorithms.Factory;
+
+namespace LoadBalancerClassLibrary.Base
 {
     public class NotificationBase<T> : NotificationBase where T : class, new()
     {

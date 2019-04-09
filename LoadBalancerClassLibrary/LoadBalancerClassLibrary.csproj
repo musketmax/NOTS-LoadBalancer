@@ -49,8 +49,17 @@
     <Compile Include="Base\NotificationBase.cs" />
     <Compile Include="Models\LoadBalancerModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\Server.cs" />
     <Compile Include="ViewModels\LoadBalancerView.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AlgorithmClassLibrary\AlgorithmClassLibrary.csproj">
+      <Project>{8AFD3F1E-6100-4FFA-AA46-CA7E270A9A42}</Project>
+      <Name>AlgorithmClassLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServerClassLibrary\ServerClassLibrary.csproj">
+      <Project>{756ADD6D-C419-4CCF-94CD-E289175CB81A}</Project>
+      <Name>ServerClassLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

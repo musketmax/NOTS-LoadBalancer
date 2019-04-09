@@ -11,6 +11,7 @@ namespace LoadBalancer
     public partial class MainWindow : Window
     {
         private LoadBalancerView VM;
+
         public MainWindow()
         {
             InitializeComponent();

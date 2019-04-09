@@ -17,7 +17,6 @@ namespace LoadBalancerClassLibrary.ViewModels
         public ICommand ClearLogCommand => _clearLogCommand;
         public ICommand StartStopCommand => _startStopCommand;
 
-
         public LoadBalancerView()
         {
             _removeServerCommand = new DelegateCommand(OnRemoveServer);
@@ -85,6 +84,11 @@ namespace LoadBalancerClassLibrary.ViewModels
             get { return This.MethodItems; }
         }
 
+        public ObservableCollection<ListBoxItem> HealthItems
+        {
+            get { return This.HealthItems; }
+        }
+
         public ListBoxItem SelectedItem
         {
             get { return This.SelectedItem; }
@@ -95,6 +99,18 @@ namespace LoadBalancerClassLibrary.ViewModels
             get { return This.SelectedMethod; }
         }
 
+        public string SelectedMethodString
+        {
+            get { return This.SelectedMethodString; }
+            set { SetProperty(This.SelectedMethodString, value, () => This.SelectedMethodString = value); }
+        }
+
+        public string SelectedHealthString
+        {
+            get { return This.SelectedHealthString; }
+            set { SetProperty(This.SelectedHealthString, value, () => This.SelectedHealthString = value); }
+        }
+
         public void StartStop()
         {
             try
@@ -102,6 +118,7 @@ namespace LoadBalancerClassLibrary.ViewModels
                 if (!This.ACTIVE && !This.STOPPING)
                 {
                     This.Start();
+                    NotifyPropertyChanged(nameof(This.MethodItems));
                 }
                 else if (This.ACTIVE && !This.STOPPING)
                 {

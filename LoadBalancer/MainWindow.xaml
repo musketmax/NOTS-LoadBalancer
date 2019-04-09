@@ -25,7 +25,7 @@
                 <DropShadowEffect Color="#FFD4D4D4"/>
             </ListBox.Effect>
         </ListBox>
-        <StackPanel Grid.Row="0" Height="201" Margin="569,10,11,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
+        <StackPanel Grid.Row="0" Height="280" Margin="569,10,11,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
             <StackPanel.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -34,8 +34,10 @@
                     <TranslateTransform X="1.149"/>
                 </TransformGroup>
             </StackPanel.RenderTransform>
-            <Grid>
+            <Grid Height="304">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -46,7 +48,7 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <Button x:Name="btnStart" Command="{Binding Path=StartStopCommand, Mode=OneWay}" Grid.ColumnSpan="2" Content="Start/Stop LB" Height="48" Margin="10, 0, 10, 10" Cursor="Hand">
+                <Button x:Name="btnStart" Command="{Binding Path=StartStopCommand, Mode=OneWay}" Grid.ColumnSpan="2" Content="Start/Stop LB" Height="48" Margin="10, 0, 10, 10" Cursor="Hand" Background="#FFAFD2F0">
                     <Button.Effect>
                         <DropShadowEffect Color="#FFD4D4D4"/>
                     </Button.Effect>
@@ -67,11 +69,21 @@
                 <Label Content="IP Address" Width="Auto" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" />
 
                 <Label Content="Method" Width="Auto" HorizontalAlignment="Left" Margin="10" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" />
-                <ComboBox Grid.Row="3" Grid.Column="1" Margin="10" Width="180" SelectedIndex="0" Cursor="Hand" ItemsSource="{Binding MethodItems}" SelectedItem="{Binding SelectedMethod, Mode=OneWay}">
+                <ComboBox Grid.Row="3" Grid.Column="1" Margin="10" Width="180" SelectedIndex="0" Cursor="Hand" ItemsSource="{Binding MethodItems}" SelectedValue="{Binding SelectedMethodString}" SelectedValuePath="Content">
                     <ComboBox.Effect>
                         <DropShadowEffect Color="#FFD4D4D4"/>
                     </ComboBox.Effect>
                 </ComboBox>
+
+                <Label Content="Health" Width="Auto" HorizontalAlignment="Left" Margin="10" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" />
+                <ComboBox Grid.Row="4" Grid.Column="1" Margin="10" Width="180" SelectedIndex="0" Cursor="Hand" ItemsSource="{Binding HealthItems}" SelectedItem="{Binding SelectedMethod, Mode=OneWay}" SelectedValue="{Binding SelectedHealthString}" SelectedValuePath="Content">
+                    <ComboBox.Effect>
+                        <DropShadowEffect Color="#FFD4D4D4"/>
+                    </ComboBox.Effect>
+                </ComboBox>
+
+                <Label Content="Persist" Width="Auto" HorizontalAlignment="Left" Margin="10, 5, 5, 10" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" />
+                <CheckBox Grid.Column="1" Grid.Row="5" HorizontalAlignment="Right" Content="On/Off" Margin="10" VerticalAlignment="Center"/>
             </Grid>
         </StackPanel>
         <Button x:Name="btnClearLog" Command="{Binding Path=ClearLogCommand, Mode=OneWay}"  Content="Clear Log" HorizontalAlignment="Left" Margin="10,525,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="525" Height="37" Cursor="Hand" Background="#FFAFD2F0">
@@ -80,7 +92,7 @@
             </Button.Effect>
         </Button>
 
-        <StackPanel Grid.Column="1" HorizontalAlignment="Left" Height="281" Grid.Row="1" VerticalAlignment="Top" Width="290">
+        <StackPanel Grid.Column="1" HorizontalAlignment="Left" Height="280" Grid.Row="1" VerticalAlignment="Top" Width="290">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>

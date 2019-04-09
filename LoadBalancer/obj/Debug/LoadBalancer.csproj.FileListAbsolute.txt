@@ -34,3 +34,7 @@ C:\Users\thomas\source\repos\LB\LoadBalancer\obj\Debug\LoadBalancer.csproj.CoreC
 C:\Users\thomas\source\repos\LB\LoadBalancer\obj\Debug\LoadBalancer.csproj.CopyComplete
 C:\Users\thomas\source\repos\LB\LoadBalancer\obj\Debug\LoadBalancer.exe
 C:\Users\thomas\source\repos\LB\LoadBalancer\obj\Debug\LoadBalancer.pdb
+C:\Users\thomas\source\repos\LB\LoadBalancer\bin\Debug\AlgorithmClassLibrary.dll
+C:\Users\thomas\source\repos\LB\LoadBalancer\bin\Debug\ServerClassLibrary.dll
+C:\Users\thomas\source\repos\LB\LoadBalancer\bin\Debug\AlgorithmClassLibrary.pdb
+C:\Users\thomas\source\repos\LB\LoadBalancer\bin\Debug\ServerClassLibrary.pdb

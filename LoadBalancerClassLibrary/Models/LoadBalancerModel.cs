@@ -365,8 +365,6 @@ namespace LoadBalancerClassLibrary.Models
 
             if (!cookie_found) COOKIE_ABSENT = true;
 
-            Console.WriteLine(guid);
-
             return guid != null && guid != "" ? servers.Where((x) => x.ALIVE && x.ID == Guid.Parse(guid)).First() : null;
         }
 

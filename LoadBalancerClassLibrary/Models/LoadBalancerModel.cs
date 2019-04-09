@@ -290,7 +290,7 @@ namespace LoadBalancerClassLibrary.Models
             }
         }
 
-        private byte[] GetAndSetHeaders(byte[] buffer, Guid key, string type)
+        private byte[] GetAndSetHeaders(byte[] buffer, Guid key)
         {
             // Split response into headers and body
             string response = Encoding.ASCII.GetString(buffer);
@@ -320,14 +320,7 @@ namespace LoadBalancerClassLibrary.Models
             }
 
             // Set header on header stringbuilder
-            if (type == COOKIE_BASED)
-            {
-                sbHeaders.AppendLine($"Set-Cookie: serverid='{key}';");
-            }
-            else if (type == SESSION_BASED)
-            {
-                sbHeaders.AppendLine($"Set-Cookie: sessionid=`{key}`;");
-            }
+            sbHeaders.AppendLine($"Set-Cookie: serverid='{key}';");
 
             // Merge the two stringbuilders
             string result = sbHeaders.ToString() + sbBody.ToString();
@@ -352,7 +345,7 @@ namespace LoadBalancerClassLibrary.Models
 
         private byte[] SetCookies(byte[] buffer, Server server)
         {
-            return GetAndSetHeaders(buffer, server.ID, COOKIE_BASED);
+            return GetAndSetHeaders(buffer, server.ID);
         }
 
         private Server GetServerForCookie(byte[] request)

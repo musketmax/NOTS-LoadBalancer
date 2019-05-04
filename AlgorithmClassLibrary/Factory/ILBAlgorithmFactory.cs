@@ -25,6 +25,8 @@ namespace AlgorithmClassLibrary.Algorithms.Factory
 
         public static List<string> GetAllAlgoRithms()
         {
+            types = new List<Type>();
+
             Type tAlgo = typeof(ILBAlgorithm);
             List<string> lstClasses = new List<string>();
 

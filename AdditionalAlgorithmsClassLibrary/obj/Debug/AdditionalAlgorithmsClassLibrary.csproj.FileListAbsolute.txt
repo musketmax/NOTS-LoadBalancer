@@ -1,0 +1,11 @@
+C:\Users\thomas\source\repos\LB\AdditionalAlgorithmsClassLibrary\bin\Debug\AdditionalAlgorithmsClassLibrary.dll
+C:\Users\thomas\source\repos\LB\AdditionalAlgorithmsClassLibrary\bin\Debug\AdditionalAlgorithmsClassLibrary.pdb
+C:\Users\thomas\source\repos\LB\AdditionalAlgorithmsClassLibrary\bin\Debug\BaseAlgorithmClassLibrary.dll
+C:\Users\thomas\source\repos\LB\AdditionalAlgorithmsClassLibrary\bin\Debug\ServerClassLibrary.dll
+C:\Users\thomas\source\repos\LB\AdditionalAlgorithmsClassLibrary\bin\Debug\BaseAlgorithmClassLibrary.pdb
+C:\Users\thomas\source\repos\LB\AdditionalAlgorithmsClassLibrary\bin\Debug\ServerClassLibrary.pdb
+C:\Users\thomas\source\repos\LB\AdditionalAlgorithmsClassLibrary\obj\Debug\AdditionalAlgorithmsClassLibrary.csprojAssemblyReference.cache
+C:\Users\thomas\source\repos\LB\AdditionalAlgorithmsClassLibrary\obj\Debug\AdditionalAlgorithmsClassLibrary.csproj.CoreCompileInputs.cache
+C:\Users\thomas\source\repos\LB\AdditionalAlgorithmsClassLibrary\obj\Debug\AdditionalAlgorithmsClassLibrary.csproj.CopyComplete
+C:\Users\thomas\source\repos\LB\AdditionalAlgorithmsClassLibrary\obj\Debug\AdditionalAlgorithmsClassLibrary.dll
+C:\Users\thomas\source\repos\LB\AdditionalAlgorithmsClassLibrary\obj\Debug\AdditionalAlgorithmsClassLibrary.pdb

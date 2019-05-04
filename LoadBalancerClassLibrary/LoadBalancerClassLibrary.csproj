@@ -52,13 +52,25 @@
     <Compile Include="ViewModels\LoadBalancerView.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AdditionalAlgorithmsClassLibrary\AdditionalAlgorithmsClassLibrary.csproj">
+      <Project>{8aa38507-ba96-4f00-b5f8-d37842f77b35}</Project>
+      <Name>AdditionalAlgorithmsClassLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AlgorithmClassLibrary\AlgorithmClassLibrary.csproj">
       <Project>{8AFD3F1E-6100-4FFA-AA46-CA7E270A9A42}</Project>
       <Name>AlgorithmClassLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BaseAlgorithmClassLibrary\BaseAlgorithmClassLibrary.csproj">
+      <Project>{4F16269F-800E-4B87-BEEC-76E7AD9614FB}</Project>
+      <Name>BaseAlgorithmClassLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ServerClassLibrary\ServerClassLibrary.csproj">
       <Project>{756ADD6D-C419-4CCF-94CD-E289175CB81A}</Project>
       <Name>ServerClassLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StandardAlgorithmsClassLibrary\StandardAlgorithmsClassLibrary.csproj">
+      <Project>{D2D5AE3F-6599-4EB4-926C-D3DB4EC6B232}</Project>
+      <Name>StandardAlgorithmsClassLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

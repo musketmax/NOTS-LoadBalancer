@@ -12,10 +12,12 @@ namespace LoadBalancerClassLibrary.ViewModels
         private readonly DelegateCommand _addServerCommand;
         private readonly DelegateCommand _clearLogCommand;
         private readonly DelegateCommand _startStopCommand;
+        private readonly DelegateCommand _checkMethodsCommand;
         public ICommand RemoveServerCommand => _removeServerCommand;
         public ICommand AddServerCommand => _addServerCommand;
         public ICommand ClearLogCommand => _clearLogCommand;
         public ICommand StartStopCommand => _startStopCommand;
+        public ICommand CheckMethods => _checkMethodsCommand;
 
         public LoadBalancerView()
         {
@@ -23,12 +25,18 @@ namespace LoadBalancerClassLibrary.ViewModels
             _addServerCommand = new DelegateCommand(OnAddServer);
             _clearLogCommand = new DelegateCommand(OnClearLog);
             _startStopCommand = new DelegateCommand(OnStartStop);
-
+            _checkMethodsCommand = new DelegateCommand(OnCheckMethods);
         }
 
         private void OnClearLog(object commandParameter)
         {
             This.Log.Clear();
+        }
+
+        private void OnCheckMethods(object commandParameter)
+        {
+            This.InitAlgos();
+            NotifyPropertyChanged(nameof(This.MethodItems));
         }
 
         private void OnStartStop(object commandParameter)
@@ -136,7 +144,6 @@ namespace LoadBalancerClassLibrary.ViewModels
                 if (!This.ACTIVE && !This.STOPPING)
                 {
                     This.Start();
-                    NotifyPropertyChanged(nameof(This.MethodItems));
                 }
                 else if (This.ACTIVE && !This.STOPPING)
                 {

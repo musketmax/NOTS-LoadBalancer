@@ -1,0 +1,11 @@
+C:\Users\thomas\source\repos\LB\StandardAlgorithmsClassLibrary\bin\Debug\StandardAlgorithmsClassLibrary.dll
+C:\Users\thomas\source\repos\LB\StandardAlgorithmsClassLibrary\bin\Debug\StandardAlgorithmsClassLibrary.pdb
+C:\Users\thomas\source\repos\LB\StandardAlgorithmsClassLibrary\bin\Debug\BaseAlgorithmClassLibrary.dll
+C:\Users\thomas\source\repos\LB\StandardAlgorithmsClassLibrary\bin\Debug\ServerClassLibrary.dll
+C:\Users\thomas\source\repos\LB\StandardAlgorithmsClassLibrary\bin\Debug\BaseAlgorithmClassLibrary.pdb
+C:\Users\thomas\source\repos\LB\StandardAlgorithmsClassLibrary\bin\Debug\ServerClassLibrary.pdb
+C:\Users\thomas\source\repos\LB\StandardAlgorithmsClassLibrary\obj\Debug\StandardAlgorithmsClassLibrary.csprojAssemblyReference.cache
+C:\Users\thomas\source\repos\LB\StandardAlgorithmsClassLibrary\obj\Debug\StandardAlgorithmsClassLibrary.csproj.CoreCompileInputs.cache
+C:\Users\thomas\source\repos\LB\StandardAlgorithmsClassLibrary\obj\Debug\StandardAlgorithmsClassLibrary.csproj.CopyComplete
+C:\Users\thomas\source\repos\LB\StandardAlgorithmsClassLibrary\obj\Debug\StandardAlgorithmsClassLibrary.dll
+C:\Users\thomas\source\repos\LB\StandardAlgorithmsClassLibrary\obj\Debug\StandardAlgorithmsClassLibrary.pdb

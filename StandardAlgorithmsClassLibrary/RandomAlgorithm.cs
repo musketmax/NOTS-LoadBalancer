@@ -1,8 +1,9 @@
-﻿using ServerClassLibrary;
+﻿using BaseAlgorithmClassLibrary;
+using ServerClassLibrary;
 using System;
 using System.Collections.Generic;
 
-namespace AlgorithmClassLibrary.Algorithms
+namespace StandardAlgorithmsClassLibrary
 {
     public class RandomAlgorithm : ILBAlgorithm
     {

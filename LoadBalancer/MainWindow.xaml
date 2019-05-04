@@ -101,7 +101,13 @@
                 </ComboBox>
             </Grid>
         </StackPanel>
-        <Button x:Name="btnClearLog" Command="{Binding Path=ClearLogCommand, Mode=OneWay}"  Content="Clear Log" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Width="525" Height="36" Cursor="Hand" Background="#FFAFD2F0" Grid.Row="3">
+        <Button x:Name="btnClearLog" Command="{Binding Path=ClearLogCommand, Mode=OneWay}"  Content="Clear Log" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Width="428" Height="36" Cursor="Hand" Background="#FFAFD2F0" Grid.Row="3">
+            <Button.Effect>
+                <DropShadowEffect Color="#FFD4D4D4"/>
+            </Button.Effect>
+        </Button>
+
+        <Button x:Name="CheckMethods" Command="{Binding Path=CheckMethods, Mode=OneWay}" Content="Reload Algos" HorizontalAlignment="Left" Margin="443,134,0,0" Grid.Row="3" VerticalAlignment="Top" Width="92" Height="36" Cursor="Hand">
             <Button.Effect>
                 <DropShadowEffect Color="#FFD4D4D4"/>
             </Button.Effect>

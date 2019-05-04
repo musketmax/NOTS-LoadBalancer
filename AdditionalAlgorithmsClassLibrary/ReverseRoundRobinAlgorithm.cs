@@ -1,13 +1,15 @@
-﻿using ServerClassLibrary;
+﻿using BaseAlgorithmClassLibrary;
+using ServerClassLibrary;
+using System;
 using System.Collections.Generic;
 
-namespace AlgorithmClassLibrary.Algorithms
+namespace AdditionalAlgorithmsClassLibrary
 {
-    public class RoundRobinAlgorithm : ILBAlgorithm
+    public class ReverseRoundRobinAlgorithm : ILBAlgorithm
     {
         private int count;
 
-        public RoundRobinAlgorithm()
+        public ReverseRoundRobinAlgorithm()
         {
             count = 1;
         }
@@ -23,7 +25,8 @@ namespace AlgorithmClassLibrary.Algorithms
 
             for (int i = 0; i < servers.Count; i++)
             {
-                if ((i + 1) == count)
+                Console.WriteLine(Math.Abs(count - servers.Count));
+                if (i == Math.Abs(count - servers.Count))
                 {
                     count++;
                     if (count > servers.Count)

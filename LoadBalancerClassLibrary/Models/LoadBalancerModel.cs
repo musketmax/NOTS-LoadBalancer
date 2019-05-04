@@ -1,6 +1,9 @@
-﻿using AlgorithmClassLibrary;
+﻿using AdditionalAlgorithmsClassLibrary;
+using AlgorithmClassLibrary;
 using AlgorithmClassLibrary.Algorithms.Factory;
+using BaseAlgorithmClassLibrary;
 using ServerClassLibrary;
+using StandardAlgorithmsClassLibrary;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -58,6 +61,9 @@ namespace LoadBalancerClassLibrary.Models
         #region Algorithms
         private ILBAlgorithmFactory algoFactory;
         private ILBAlgorithm currentAlgorithm;
+        private ReverseRoundRobinAlgorithm a;
+        private RoundRobinAlgorithm b;
+        private RandomAlgorithm c;
         private string PreviousAlgoString;
         #endregion
 
@@ -105,7 +111,7 @@ namespace LoadBalancerClassLibrary.Models
             AddToPersist(SESSION_BASED);
         }
 
-        private void InitAlgos()
+        public void InitAlgos()
         {
             MethodItems = new ObservableCollection<ListBoxItem>();
             ILBAlgorithmFactory.GetAllAlgoRithms().ForEach((x) =>
@@ -116,16 +122,25 @@ namespace LoadBalancerClassLibrary.Models
 
         public async void Start()
         {
-            ACTIVE = true;
-            _listener = new TcpListener(IPAddress.Parse(IP), PORT);
-            _listener.Start();
-            AddToLog("Started LoadBalancer.");
+            IPAddress address;
 
-            try
+            if (IPAddress.TryParse(IP, out address) && (PORT > 0))
             {
-                await Task.Run(() => ListenForClients());
+                ACTIVE = true;
+                _listener = new TcpListener(address, PORT);
+                _listener.Start();
+                AddToLog("Started LoadBalancer.");
+
+                try
+                {
+                    await Task.Run(() => ListenForClients());
+                }
+                catch { }
             }
-            catch { }
+            else
+            {
+                AddToLog("An invalid IP Address was entered, or the Port was invalid.");
+            }
         }
 
         public void Stop()
@@ -174,8 +189,11 @@ namespace LoadBalancerClassLibrary.Models
 
                         if (clientStream.DataAvailable)
                         {
-                            bytesRead = await clientStream.ReadAsync(buffer, 0, buffer.Length);
-                            await memStream.WriteAsync(buffer, 0, bytesRead);
+                            do
+                            {
+                                bytesRead = await clientStream.ReadAsync(buffer, 0, buffer.Length);
+                                await memStream.WriteAsync(buffer, 0, bytesRead);
+                            } while (clientStream.DataAvailable);
                         }
 
                         await LoadBalanceRequest(memStream, client);
@@ -250,34 +268,45 @@ namespace LoadBalancerClassLibrary.Models
                         {
                             await serverStream.WriteAsync(stream.GetBuffer(), 0, stream.GetBuffer().Length);
 
-                            if (serverStream.DataAvailable)
+                            using (MemoryStream memStream = new MemoryStream())
                             {
-                                await serverStream.ReadAsync(buffer, 0, buffer.Length);
-
-                                if (SelectedHealthString == "Passive")
+                                if (serverStream.DataAvailable)
                                 {
-                                    DoHealthCheckPassive(buffer, serverToSend);
-                                }
+                                    //while (true)
+                                    //{
+                                    //    int bytesReceived = await serverStream.ReadAsync(buffer, 0, buffer.Length);
+                                    //    if (bytesReceived == 0) break;
+                                    //    await memStream.WriteAsync(buffer, 0, bytesReceived);
+                                    //    await clientStream.WriteAsync(buffer, 0, bytesReceived);
+                                    //}
 
-                                byte[] res = buffer;
-                                if (PERSIST)
-                                {
-                                    if (SelectedPersistString == COOKIE_BASED)
+                                    await serverStream.ReadAsync(buffer, 0, buffer.Length);
+
+                                    if (SelectedHealthString == "Passive")
                                     {
-                                        AddToLog("Setting Cookies for Persistence..");
-                                        res = SetCookies(buffer, serverToSend);
+                                        DoHealthCheckPassive(buffer, serverToSend);
                                     }
-                                    else if (SelectedPersistString == SESSION_BASED)
+
+                                    byte[] res = buffer;
+                                    if (PERSIST)
                                     {
-                                        AddToLog("Setting Sessions for persistence..");
-                                        SetSession(client, serverToSend);
+                                        if (SelectedPersistString == COOKIE_BASED)
+                                        {
+                                            AddToLog("Setting Cookies for Persistence..");
+                                            res = SetCookies(buffer, serverToSend);
+                                        }
+                                        else if (SelectedPersistString == SESSION_BASED)
+                                        {
+                                            AddToLog("Setting Sessions for persistence..");
+                                            SetSession(client, serverToSend);
+                                        }
                                     }
+
+                                    await clientStream.WriteAsync(res, 0, res.Length);
+
+                                    AddToLog($"Load balanced to server {serverToSend.NAME}.");
+                                    AddToLog($"Used {SelectedMethodString}.");
                                 }
-
-                                await clientStream.WriteAsync(res, 0, res.Length);
-
-                                AddToLog($"Load balanced to server {serverToSend.NAME}.");
-                                AddToLog($"Used {SelectedMethodString}.");
                             }
                         }
                     }
@@ -477,7 +506,7 @@ namespace LoadBalancerClassLibrary.Models
         private void InitServers()
         {
             servers = new List<Server>();
-            int nrServers = 10;
+            int nrServers = 6;
 
             for (int i = 1; i <= nrServers; i++)
             {

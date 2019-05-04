@@ -98,9 +98,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AdditionalAlgorithmsClassLibrary\AdditionalAlgorithmsClassLibrary.csproj">
+      <Project>{8aa38507-ba96-4f00-b5f8-d37842f77b35}</Project>
+      <Name>AdditionalAlgorithmsClassLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AlgorithmClassLibrary\AlgorithmClassLibrary.csproj">
       <Project>{8afd3f1e-6100-4ffa-aa46-ca7e270a9a42}</Project>
       <Name>AlgorithmClassLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StandardAlgorithmsClassLibrary\StandardAlgorithmsClassLibrary.csproj">
+      <Project>{d2d5ae3f-6599-4eb4-926c-d3db4ec6b232}</Project>
+      <Name>StandardAlgorithmsClassLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

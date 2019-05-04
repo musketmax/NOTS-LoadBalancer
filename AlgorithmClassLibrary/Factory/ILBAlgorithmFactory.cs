@@ -1,11 +1,16 @@
-﻿using System;
+﻿using BaseAlgorithmClassLibrary;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Reflection;
 
 namespace AlgorithmClassLibrary.Algorithms.Factory
 {
     public class ILBAlgorithmFactory
     {
+        private static List<Type> types = new List<Type>();
+
         public ILBAlgorithm GetAlgorithm(string algo)
         {
             if (algo == null || algo == "")
@@ -23,11 +28,24 @@ namespace AlgorithmClassLibrary.Algorithms.Factory
             Type tAlgo = typeof(ILBAlgorithm);
             List<string> lstClasses = new List<string>();
 
-            foreach (var type in Assembly.GetAssembly(tAlgo).GetTypes())
+            var _path = @"C:\Users\thomas\source\repos\LB\AlgorithmClassLibrary\Algorithms";
+            var dlls = Directory.GetFiles(_path, "*.dll");
+            List<Assembly> assemblies = new List<Assembly>();
+
+            foreach (var dll in dlls)
             {
-                if (tAlgo.IsAssignableFrom(type) && (type != tAlgo))
+                assemblies.Add(Assembly.LoadFile(Path.GetFullPath(dll)));
+            }
+
+            foreach (var assem in assemblies)
+            {
+                foreach (var type in assem.GetTypes())
                 {
-                    lstClasses.Add(type.Name);
+                    if (tAlgo.IsAssignableFrom(type) && (type != tAlgo))
+                    {
+                        types.Add(type);
+                        lstClasses.Add(type.Name);
+                    }
                 }
             }
 
@@ -36,12 +54,11 @@ namespace AlgorithmClassLibrary.Algorithms.Factory
 
         private Type GetAlgorithmByName(string name)
         {
-            Type tAlgo = typeof(ILBAlgorithm);
             object oInstance = null;
 
-            foreach (var type in Assembly.GetCallingAssembly().GetTypes())
+            foreach (var type in types)
             {
-                if (tAlgo.IsAssignableFrom(type) && (type != tAlgo) && (type.Name == name))
+                if (type.Name == name)
                 {
                     oInstance = type;
                 }
@@ -49,5 +66,7 @@ namespace AlgorithmClassLibrary.Algorithms.Factory
 
             return (oInstance as Type);
         }
+
     }
 }
+

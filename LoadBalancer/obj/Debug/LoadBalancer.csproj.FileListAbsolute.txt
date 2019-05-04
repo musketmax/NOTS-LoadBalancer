@@ -19,11 +19,17 @@ C:\Users\thomas\source\repos\LoadBalancer\LoadBalancer\obj\Debug\LoadBalancer.cs
 C:\Users\thomas\source\repos\LB\LoadBalancer\bin\Debug\LoadBalancer.exe.config
 C:\Users\thomas\source\repos\LB\LoadBalancer\bin\Debug\LoadBalancer.exe
 C:\Users\thomas\source\repos\LB\LoadBalancer\bin\Debug\LoadBalancer.pdb
+C:\Users\thomas\source\repos\LB\LoadBalancer\bin\Debug\AdditionalAlgorithmsClassLibrary.dll
 C:\Users\thomas\source\repos\LB\LoadBalancer\bin\Debug\AlgorithmClassLibrary.dll
 C:\Users\thomas\source\repos\LB\LoadBalancer\bin\Debug\LoadBalancerClassLibrary.dll
+C:\Users\thomas\source\repos\LB\LoadBalancer\bin\Debug\StandardAlgorithmsClassLibrary.dll
+C:\Users\thomas\source\repos\LB\LoadBalancer\bin\Debug\BaseAlgorithmClassLibrary.dll
 C:\Users\thomas\source\repos\LB\LoadBalancer\bin\Debug\ServerClassLibrary.dll
+C:\Users\thomas\source\repos\LB\LoadBalancer\bin\Debug\AdditionalAlgorithmsClassLibrary.pdb
 C:\Users\thomas\source\repos\LB\LoadBalancer\bin\Debug\AlgorithmClassLibrary.pdb
+C:\Users\thomas\source\repos\LB\LoadBalancer\bin\Debug\StandardAlgorithmsClassLibrary.pdb
 C:\Users\thomas\source\repos\LB\LoadBalancer\bin\Debug\LoadBalancerClassLibrary.pdb
+C:\Users\thomas\source\repos\LB\LoadBalancer\bin\Debug\BaseAlgorithmClassLibrary.pdb
 C:\Users\thomas\source\repos\LB\LoadBalancer\bin\Debug\ServerClassLibrary.pdb
 C:\Users\thomas\source\repos\LB\LoadBalancer\obj\Debug\LoadBalancer.csprojAssemblyReference.cache
 C:\Users\thomas\source\repos\LB\LoadBalancer\obj\Debug\MainWindow.baml

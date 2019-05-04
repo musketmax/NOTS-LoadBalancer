@@ -3,4 +3,3 @@ C:\Users\thomas\source\repos\LB\ServerClassLibrary\bin\Debug\ServerClassLibrary.
 C:\Users\thomas\source\repos\LB\ServerClassLibrary\obj\Debug\ServerClassLibrary.csproj.CoreCompileInputs.cache
 C:\Users\thomas\source\repos\LB\ServerClassLibrary\obj\Debug\ServerClassLibrary.dll
 C:\Users\thomas\source\repos\LB\ServerClassLibrary\obj\Debug\ServerClassLibrary.pdb
-C:\Users\thomas\source\repos\LB\ServerClassLibrary\obj\Debug\ServerClassLibrary.csprojAssemblyReference.cache

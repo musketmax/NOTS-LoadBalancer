@@ -1,0 +1,9 @@
+C:\Users\thomas\source\repos\LB\BaseAlgorithmClassLibrary\bin\Debug\BaseAlgorithmClassLibrary.dll
+C:\Users\thomas\source\repos\LB\BaseAlgorithmClassLibrary\bin\Debug\BaseAlgorithmClassLibrary.pdb
+C:\Users\thomas\source\repos\LB\BaseAlgorithmClassLibrary\bin\Debug\ServerClassLibrary.dll
+C:\Users\thomas\source\repos\LB\BaseAlgorithmClassLibrary\bin\Debug\ServerClassLibrary.pdb
+C:\Users\thomas\source\repos\LB\BaseAlgorithmClassLibrary\obj\Debug\BaseAlgorithmClassLibrary.csprojAssemblyReference.cache
+C:\Users\thomas\source\repos\LB\BaseAlgorithmClassLibrary\obj\Debug\BaseAlgorithmClassLibrary.csproj.CoreCompileInputs.cache
+C:\Users\thomas\source\repos\LB\BaseAlgorithmClassLibrary\obj\Debug\BaseAlgorithmClassLibrary.csproj.CopyComplete
+C:\Users\thomas\source\repos\LB\BaseAlgorithmClassLibrary\obj\Debug\BaseAlgorithmClassLibrary.dll
+C:\Users\thomas\source\repos\LB\BaseAlgorithmClassLibrary\obj\Debug\BaseAlgorithmClassLibrary.pdb
